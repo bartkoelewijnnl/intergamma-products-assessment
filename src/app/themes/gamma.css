@@ -1,0 +1,47 @@
+@layer base {
+  [data-theme="gamma"] {
+    /* Borrowed from gamma.nl via devtools */
+    --gamma-primary: #003878;
+    --gamma-focus: #0066db;
+    --gamma-text: #111518;
+
+    --background: #edf0f2;
+    --foreground: var(--gamma-text);
+
+    --accent: var(--gamma-primary);
+    --accent-foreground: var(--white);
+
+    /* gamma.nl darkens brand colors 50% towards black on hover */
+    --accent-hover: color-mix(in srgb, var(--accent) 50%, black);
+    --focus: var(--gamma-focus);
+  }
+}
+
+@layer components {
+  [data-theme="gamma"] {
+    .button {
+      @apply h-12 rounded-md px-4 text-base/4 font-bold;
+
+      &:focus-visible,
+      &[data-focus-visible="true"] {
+        @apply shadow-none;
+      }
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-6;
+      }
+    }
+
+    .button--icon-only {
+      @apply w-12;
+    }
+
+    /* White button for brand-blue sections, like the favorites button in the design */
+    .button--secondary {
+      --button-bg: var(--white);
+      --button-bg-hover: var(--background);
+      --button-bg-pressed: var(--background);
+      --button-fg: var(--accent);
+    }
+  }
+}

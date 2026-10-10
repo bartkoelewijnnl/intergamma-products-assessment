@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+@import "./themes/gamma.css";
+
+@theme inline reference {
+  --font-overpass: var(--font-overpass);
+}
