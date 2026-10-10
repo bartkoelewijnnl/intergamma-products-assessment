@@ -24,6 +24,17 @@
   @apply grid gap-4 lg:grid-cols-12 lg:gap-8;
 }
 
+/* Brand-colored sections like the header and hero: a white focus ring with a brand-colored gap.
+   HeroUI's default is a dark blue ring with a gap in the page background, which looks out of place here.
+   The gap color is set on every element because Tailwind doesn't let --tw-ring-offset-color inherit. */
+@utility focus-on-brand {
+  --focus: var(--accent-foreground);
+
+  & * {
+    --tw-ring-offset-color: var(--accent);
+  }
+}
+
 /* Animate what changes between themes: colors, and corners from round (Gamma) to square (Karwei) */
 @utility transition-theme {
   @apply transition-[background-color,color,border-radius] duration-300 ease-out-fluid motion-reduce:transition-none;

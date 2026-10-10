@@ -43,9 +43,8 @@ const ProductTabsRoot = ({ children }: PropsWithChildren) => {
   );
 };
 
-// Styled for the brand-colored hero: white text, white pill for the selected tab
-// and a white focus ring with a brand-colored gap, because the default focus blue is too dark
-// on the brand color and a plain white ring would disappear against the selected pill.
+// Styled for the brand-colored hero: white text, white pill for the selected tab.
+// The focus ring comes from focus-on-brand on the hero section.
 // *:text-accent-foreground colors the scroll arrows that appear when the tabs don't fit.
 const ProductTabsList = () => {
   return (
@@ -55,7 +54,7 @@ const ProductTabsList = () => {
           <Tabs.Tab
             key={id}
             id={id}
-            className="h-10 rounded-md text-base font-bold text-accent-foreground data-focus-visible:ring-accent-foreground data-focus-visible:ring-offset-2 data-focus-visible:ring-offset-accent data-selected:text-accent"
+            className="h-10 rounded-md text-base font-bold text-accent-foreground data-selected:text-accent"
           >
             {label}
             <Tabs.Indicator className="rounded-md bg-accent-foreground" />

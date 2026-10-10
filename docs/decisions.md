@@ -25,3 +25,21 @@ Short records of the choices that shape this project: context, decision and the 
 - **Context:** Lighthouse on mobile measured an LCP of 3.6 s. The LCP element is the hero heading, and almost all of that time was render delay: three preloaded font files (127 KB) competed with the CSS for bandwidth. The Overpass italic file was never used, and Inter is only used by the Karwei theme.
 - **Decision:** Load Overpass as a single normal-style file and set `preload: false` on Inter. Only the font for the default Gamma theme is preloaded. When someone switches to Karwei, Inter loads then, and the fallback font with matching metrics from `next/font` prevents a layout shift. Mobile LCP went from 3.6 s to 3.0 s (simulated), the performance score from 90 to 95.
 - **Alternatives:** Keeping all fonts preloaded (88 KB extra on the critical path for nothing in the Gamma theme); preloading Inter only for the Karwei theme (the theme is only known in the browser after next-themes runs, too late for a preload in the HTML).
+
+### Category tabs without a URL
+
+- **Context:** The design has category filters: all products, each category and products on sale.
+- **Decision:** HeroUI Tabs in a `ProductTabs` component. Every panel is rendered on the server at build time, the tabs only switch which one is visible. The page stays static and switching is instant. The selected category is not in the URL.
+- **Alternatives:** `?categorie=verf` with `searchParams` (renders on every request, every click is a server round trip, and links are navigation rather than tabs); static routes per category with `generateStaticParams` (shareable URLs and no JavaScript needed, but a `<nav>` with separate pages instead of tabs; the better choice for a real shop with many products).
+
+### HeroUI for interactive components
+
+- **Context:** The drawer, tabs, number field, switch and toast need keyboard support, focus management and the right ARIA roles.
+- **Decision:** HeroUI v3, built on React Aria. Focus trapping, Escape, arrow keys and screen reader announcements come from a well-tested base. Brand styling is done through theme tokens and classes, not by rebuilding components.
+- **Alternatives:** Building these components ourselves (a lot of accessibility work that is easy to get wrong); shadcn/ui on Radix (comparable, but copies component code into the repo instead of a dependency with themes).
+
+### Server Components by default
+
+- **Context:** What runs on the server and what in the browser should be a conscious choice.
+- **Decision:** Everything is a Server Component unless it needs browser state. That leaves three Client Components: the heart button, the wishlist drawer and the theme switch. The page is prerendered as static HTML, and a card only ships JavaScript for its heart. Product data stays on the server and goes to the drawer as a prop, so swapping the JSON for an API only touches server code.
+- **Alternatives:** A client-side card or grid (simpler, but ships everything for one button); importing the JSON in the drawer (ties client code to the data source).

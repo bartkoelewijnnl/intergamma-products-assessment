@@ -50,5 +50,20 @@
     .chip {
       @apply rounded-md font-bold;
     }
+
+    /* HeroUI's slide-in transition never starts: React Aria only waits for animations on the drawer content,
+       while the slide is on the dialog inside it, so the entering state is gone before the first paint.
+       A keyframe animation runs on mount by itself. Closing already slides out, so only entering is added. */
+    .drawer__content--right .drawer__dialog {
+      animation: drawer-slide-in-right var(--drawer-enter-duration)
+        var(--drawer-enter-ease);
+      @apply motion-reduce:animate-none;
+    }
+  }
+}
+
+@keyframes drawer-slide-in-right {
+  from {
+    translate: 100% 0;
   }
 }

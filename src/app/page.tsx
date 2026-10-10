@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <ProductTabs>
       {/* Extra bottom padding so the products panel can overlap the blue */}
-      <div className="bg-accent pb-24 transition-theme lg:pb-32">
+      <div className="bg-accent pb-24 focus-on-brand transition-theme lg:pb-32">
         <Container>
           <Hero
             title="Alles voor je klus, van eerste schroef tot laatste laag verf"

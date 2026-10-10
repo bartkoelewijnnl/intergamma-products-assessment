@@ -23,3 +23,7 @@
 ### 6. Web Vitals
 
 > Kun je de build door lighthouse halen, op mobiel en desktop? Ik wil per meting de scores en de core web vitals zien, plus wat het lcp element is en waar de tijd in gaat zitten. Zet de verbeterpunten op volgorde, nog niks aanpassen, eerst even kijken.
+
+### 7. Kolommen
+
+> Op hele kleine schermen wil ik één kolom producten in plaats van twee. Gebruik een breakpoint in het thema, geen losse waarde.

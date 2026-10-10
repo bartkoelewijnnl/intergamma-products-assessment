@@ -8,7 +8,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-foreground"
+      className="rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
     >
       <span className="karwei:hidden">
         <GammaLogo />

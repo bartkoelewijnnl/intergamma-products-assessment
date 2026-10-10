@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import type { Product } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 import { useWishlist } from "@/stores/wishlist";
+import DrawerEmpty from "./drawer-empty";
 import DrawerItem from "./drawer-item";
 
 const pluralize = (count: number) =>
@@ -77,10 +78,7 @@ const WishlistDrawer = ({ products }: WishlistDrawerProps) => {
 
             <Drawer.Body>
               {count === 0 ? (
-                <p>
-                  Je verlanglijst is nog leeg. Klik op het hartje bij een
-                  product om het te bewaren.
-                </p>
+                <DrawerEmpty />
               ) : (
                 <ul className="flex flex-col gap-3">
                   {entries.map(({ product, quantity }) => (
@@ -94,20 +92,21 @@ const WishlistDrawer = ({ products }: WishlistDrawerProps) => {
               )}
             </Drawer.Body>
 
-            <Drawer.Footer className="flex-col items-stretch gap-4 border-t border-separator pt-6">
-              {count > 0 && (
+            {/* The empty state has its own button to close the drawer */}
+            {count > 0 && (
+              <Drawer.Footer className="flex-col items-stretch gap-4 border-t border-separator pt-6">
                 <p className="flex items-baseline justify-between">
                   <span>Totaal</span>
                   <span className="text-2xl font-bold text-accent">
                     {formatPrice(total)}
                   </span>
                 </p>
-              )}
-              {/* slot="close" lets the dialog close itself, like the close trigger */}
-              <Button fullWidth slot="close">
-                Sluiten
-              </Button>
-            </Drawer.Footer>
+                {/* slot="close" lets the dialog close itself, like the close trigger */}
+                <Button fullWidth slot="close">
+                  Sluiten
+                </Button>
+              </Drawer.Footer>
+            )}
           </Drawer.Dialog>
         </Drawer.Content>
       </Drawer.Backdrop>

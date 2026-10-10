@@ -62,7 +62,7 @@ const RootLayout = ({ children }: LayoutProps<"/">) => {
           >
             Overslaan en naar de inhoud gaan
           </a>
-          <div className="bg-accent transition-theme">
+          <div className="bg-accent focus-on-brand transition-theme">
             <Container>
               <Header />
             </Container>
