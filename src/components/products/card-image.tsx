@@ -29,7 +29,7 @@ const CardImage = ({ category, className, children }: CardImageProps) => {
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-xl",
+        "relative flex items-center justify-center rounded-xl transition-radius",
         tile,
         className,
       )}

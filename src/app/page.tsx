@@ -7,7 +7,7 @@ const HomePage = ({}: PageProps<"/">) => {
   return (
     <>
       {/* Extra bottom padding so the products panel can overlap the blue */}
-      <div className="bg-accent pb-24 lg:pb-32">
+      <div className="bg-accent pb-24 transition-colors duration-300 motion-reduce:transition-none lg:pb-32">
         <Container>
           <Hero
             title="Alles voor je klus, van eerste schroef tot laatste laag verf"
@@ -16,7 +16,7 @@ const HomePage = ({}: PageProps<"/">) => {
         </Container>
       </div>
       <Container className="-mt-14 pb-8 lg:-mt-16">
-        <div className="rounded-2xl bg-surface p-4 sm:p-6">
+        <div className="rounded-2xl bg-surface p-4 transition-radius sm:p-6">
           <Products title="Populair deze week" products={products} />
         </div>
       </Container>

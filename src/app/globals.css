@@ -1,12 +1,36 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 @import "./themes/gamma.css";
+@import "./themes/karwei.css";
 
+/* Each theme sets --brand-font to its own font */
 @theme inline reference {
-  --font-overpass: var(--font-overpass);
+  --font-brand: var(--brand-font);
 }
 
 /* Page grid: 12 columns from lg, place children with col-span-* and col-start-* */
 @utility page-grid {
   @apply grid gap-4 lg:grid-cols-12 lg:gap-8;
+}
+
+/* Animate corners between round (Gamma) and square (Karwei) when the theme changes */
+@utility transition-radius {
+  transition: border-radius 300ms var(--ease-out-fluid);
+  @apply motion-reduce:transition-none;
+}
+
+/* HeroUI components: add border-radius to their own transitions */
+@layer components {
+  .button {
+    transition:
+      transform 250ms var(--ease-smooth),
+      background-color 100ms var(--ease-out),
+      box-shadow 100ms var(--ease-out),
+      border-radius 300ms var(--ease-out-fluid);
+    @apply motion-reduce:transition-none;
+  }
+
+  .chip {
+    @apply transition-radius;
+  }
 }

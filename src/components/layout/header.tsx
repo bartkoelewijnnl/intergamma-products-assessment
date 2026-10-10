@@ -1,4 +1,5 @@
 import WishlistDrawer from "@/components/wishlist/drawer";
+import ThemeSwitch from "./theme-switch";
 
 const Header = () => {
   return (
@@ -6,7 +7,10 @@ const Header = () => {
       {/* Logo follows later */}
       <div />
 
-      <WishlistDrawer />
+      <div className="flex items-center gap-6">
+        <ThemeSwitch />
+        <WishlistDrawer />
+      </div>
     </header>
   );
 };

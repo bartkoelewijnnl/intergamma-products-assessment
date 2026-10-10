@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { ThemeProvider } from "next-themes";
 import { Toast } from "@heroui/react";
 import Container from "@/components/layout/container";
 import Header from "@/components/layout/header";
@@ -28,6 +30,13 @@ const overpass = localFont({
   ],
 });
 
+// Karwei theme font: free stand-in for the paid Akkurat
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Intergamma | Producten",
@@ -39,15 +48,27 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: LayoutProps<"/">) => {
   return (
-    <html lang="nl" data-theme="gamma" className={`${overpass.variable}`}>
-      <body className="bg-background font-overpass text-foreground">
-        <div className="bg-accent">
-          <Container>
-            <Header />
-          </Container>
-        </div>
-        <main>{children}</main>
-        <Toast.Provider />
+    <html
+      lang="nl"
+      data-theme="gamma"
+      className={`${overpass.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="bg-background font-brand text-foreground transition-colors duration-300 motion-reduce:transition-none">
+        <ThemeProvider
+          attribute="data-theme"
+          themes={["gamma", "karwei"]}
+          defaultTheme="gamma"
+          enableSystem={false}
+        >
+          <div className="bg-accent transition-colors duration-300 motion-reduce:transition-none">
+            <Container>
+              <Header />
+            </Container>
+          </div>
+          <main>{children}</main>
+          <Toast.Provider />
+        </ThemeProvider>
       </body>
     </html>
   );

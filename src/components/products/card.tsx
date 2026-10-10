@@ -32,7 +32,7 @@ const ProductCard = ({
       </CardImage>
 
       <Card.Header>
-        <Card.Title className="text-base/snug font-bold text-accent">
+        <Card.Title className="text-base/snug font-bold hyphens-auto text-accent">
           {name}
         </Card.Title>
       </Card.Header>

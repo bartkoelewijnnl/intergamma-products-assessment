@@ -1,0 +1,77 @@
+@layer base {
+  [data-theme="karwei"] {
+    --karwei-primary: #000000;
+    --karwei-focus: #0066db;
+    --karwei-text: #1e1d1d;
+    --karwei-promo: #c20344;
+
+    /* Akkurat on karwei.nl is a paid font, Inter is the closest free match */
+    --brand-font: var(--font-inter);
+
+    /* karwei.nl uses square corners, this scales every radius-* to 0 */
+    --radius: 0px;
+
+    --background: #f6f3f0;
+    --foreground: var(--karwei-text);
+
+    --accent: var(--karwei-primary);
+    --accent-foreground: var(--white);
+
+    /* Black can't get darker, so hover lightens instead */
+    --accent-hover: color-mix(in srgb, var(--accent) 80%, white);
+    --focus: var(--karwei-focus);
+
+    /* White text on the magenta promo color is 6.2:1, passes WCAG AA */
+    --warning: var(--karwei-promo);
+    --warning-foreground: var(--white);
+  }
+}
+
+@layer components {
+  [data-theme="karwei"] {
+    .button {
+      @apply h-12 px-4 text-base/4 font-normal;
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-6;
+      }
+    }
+
+    .button--icon-only {
+      @apply w-12;
+    }
+
+    .button--sm {
+      @apply h-10;
+
+      &.button--icon-only {
+        @apply w-10;
+      }
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-5;
+      }
+    }
+
+    .badge {
+      --badge-border: transparent;
+      @apply font-bold;
+    }
+
+    .badge--sm {
+      @apply min-h-5 min-w-5 rounded-full text-xs leading-none;
+    }
+
+    .chip {
+      @apply font-bold;
+    }
+
+    /* White button for brand-black sections */
+    .button--secondary {
+      --button-bg: var(--white);
+      --button-bg-hover: var(--background);
+      --button-bg-pressed: var(--background);
+      --button-fg: var(--accent);
+    }
+  }
+}

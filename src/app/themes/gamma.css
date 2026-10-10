@@ -6,6 +6,8 @@
     --gamma-text: #111518;
     --gamma-promo: #ff5500;
 
+    --brand-font: var(--font-overpass);
+
     --background: #edf0f2;
     --foreground: var(--gamma-text);
 
