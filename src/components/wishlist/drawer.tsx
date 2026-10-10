@@ -1,17 +1,59 @@
 "use client";
 
-import { Badge, Button, Drawer } from "@heroui/react";
+import { Badge, Button, Drawer, toast } from "@heroui/react";
 import { Heart } from "lucide-react";
 import { useEffect } from "react";
+import type { Product } from "@/data/products";
+import { formatPrice } from "@/lib/format";
 import { useWishlist } from "@/stores/wishlist";
+import DrawerItem from "./drawer-item";
 
-const WishlistDrawer = () => {
-  const count = useWishlist((state) => state.items.length);
+const pluralize = (count: number) =>
+  `${count} ${count === 1 ? "product" : "producten"}`;
+
+export type WishlistDrawerProps = {
+  // Passed in by the server, so this client component doesn't import the product data itself
+  products: Product[];
+};
+
+const WishlistDrawer = ({ products }: WishlistDrawerProps) => {
+  const items = useWishlist((state) => state.items);
 
   // The header is on every page, so the stored wishlist is loaded here once
   useEffect(() => {
     useWishlist.persist.rehydrate();
   }, []);
+
+  // Skip items whose product no longer exists
+  const entries = items.flatMap((item) => {
+    const product = products.find(({ id }) => id === item.productId);
+    return product ? [{ ...item, product }] : [];
+  });
+
+  const count = entries.length;
+  const total = entries.reduce(
+    (sum, { product, quantity }) => sum + product.price * quantity,
+    0,
+  );
+
+  // There is no cart or share endpoint yet, so these only confirm the action
+  const onAddToCart = () =>
+    toast.success("Toegevoegd aan winkelwagen", {
+      description: pluralize(count),
+    });
+
+  const onShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      await navigator
+        .share({ title: "Mijn verlanglijst", url })
+        .catch(() => {});
+      return;
+    }
+
+    await navigator.clipboard.writeText(url);
+    toast("Link gekopieerd");
+  };
 
   return (
     <Drawer>
@@ -19,7 +61,7 @@ const WishlistDrawer = () => {
         <Button
           isIconOnly
           variant="secondary"
-          aria-label={`Verlanglijst, ${count} ${count === 1 ? "product" : "producten"}`}
+          aria-label={`Verlanglijst, ${pluralize(count)}`}
         >
           <Heart aria-hidden />
         </Button>
@@ -38,12 +80,58 @@ const WishlistDrawer = () => {
 
       <Drawer.Backdrop>
         <Drawer.Content placement="right">
-          <Drawer.Dialog className="w-full max-w-md">
-            <Drawer.CloseTrigger aria-label="Sluiten" />
-            <Drawer.Header>
-              <Drawer.Heading>Verlanglijst</Drawer.Heading>
+          <Drawer.Dialog className="w-full max-w-md gap-6">
+            <Drawer.CloseTrigger
+              aria-label="Sluiten"
+              className="end-6 top-6 size-12 rounded-md border border-border bg-surface text-foreground transition-theme"
+            />
+
+            <Drawer.Header className="gap-1 pe-16">
+              <Drawer.Heading className="text-2xl font-bold text-accent">
+                Verlanglijst
+              </Drawer.Heading>
+              <p className="text-sm text-muted">{pluralize(count)} bewaard</p>
             </Drawer.Header>
-            <Drawer.Body />
+
+            <Drawer.Body>
+              {count === 0 ? (
+                <p>
+                  Je verlanglijst is nog leeg. Klik op het hartje bij een
+                  product om het te bewaren.
+                </p>
+              ) : (
+                <ul className="flex flex-col gap-3">
+                  {entries.map(({ product, quantity }) => (
+                    <DrawerItem
+                      key={product.id}
+                      product={product}
+                      quantity={quantity}
+                    />
+                  ))}
+                </ul>
+              )}
+            </Drawer.Body>
+
+            {count > 0 && (
+              <Drawer.Footer className="flex-col items-stretch gap-4 border-t border-separator pt-6">
+                <p className="flex items-baseline justify-between">
+                  <span>Totaal</span>
+                  <span className="text-2xl font-bold text-accent">
+                    {formatPrice(total)}
+                  </span>
+                </p>
+                <Button
+                  fullWidth
+                  className="button--conversion"
+                  onPress={onAddToCart}
+                >
+                  Alles in winkelwagen
+                </Button>
+                <Button fullWidth variant="outline" onPress={onShare}>
+                  Verlanglijst delen
+                </Button>
+              </Drawer.Footer>
+            )}
           </Drawer.Dialog>
         </Drawer.Content>
       </Drawer.Backdrop>

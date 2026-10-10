@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Intergamma products assessment
 
-## Getting Started
+A product listing page with a wishlist side panel, built for the Intergamma front-end assessment. It has a Gamma and a Karwei theme that you switch in the header.
 
-First, run the development server:
+## Features
+
+- Product listing with fake products from [`src/data/products.json`](src/data/products.json)
+- Wishlist: add and remove products with the heart on each card, change quantities in the side panel
+- The wishlist persists between browser sessions (`localStorage`)
+- Header with logo and a favorites button whose badge shows the number of products on the wishlist
+- Side panel (drawer) that overlays the page, with totals per item and overall
+- Gamma and Karwei themes: colors, font, corners and logo follow gamma.nl and karwei.nl
+
+## Getting started
+
+Requires Node.js 20 or later and Yarn 1.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+yarn dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command       | What it does         |
+| ------------- | -------------------- |
+| `yarn dev`    | Start the dev server |
+| `yarn build`  | Production build     |
+| `yarn start`  | Serve the build      |
+| `yarn lint`   | ESLint               |
+| `yarn format` | Format with Prettier |
 
-## Learn More
+## Stack
 
-To learn more about Next.js, take a look at the following resources:
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, [HeroUI v3](https://heroui.com) (built on React Aria), Zustand for the wishlist and next-themes for the theme switch.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+  app/
+    layout.tsx          Fonts, theme provider, header, toast region
+    page.tsx            Product listing page
+    globals.css         Tailwind, HeroUI, theme variants and utilities
+    themes/
+      shared.css        HeroUI styling used by every theme
+      gamma.css         Gamma tokens
+      karwei.css        Karwei tokens and differences
+  components/
+    layout/             Container, header, hero, logo, theme switch
+    products/           Product grid and card (image, price, stock)
+    wishlist/           Heart button, drawer, drawer item
+  data/                 Product JSON and types
+  lib/                  Price formatting
+  stores/               Wishlist store (Zustand)
+docs/
+  decisions.md          Decisions with context and alternatives
+  prompts.md            Prompts used with Claude Code
+```
 
-## Deploy on Vercel
+## Server and client components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Everything renders on the server unless it needs browser state or interaction. The page is prerendered as static HTML.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Component                                           | Runs on | Why                                                                 |
+| --------------------------------------------------- | ------- | ------------------------------------------------------------------- |
+| `layout`, `page`, `Header`, `Hero`, `Logo`          | Server  | Static content, no interaction                                      |
+| `Products`, `ProductCard`, `CardImage`, `CardPrice` | Server  | Product data is known at build time                                 |
+| `WishlistButton`                                    | Client  | Reads and toggles the wishlist, the only interactive part of a card |
+| `WishlistDrawer`, `DrawerItem`                      | Client  | Drawer state, quantities and the stored wishlist                    |
+| `ThemeSwitch`                                       | Client  | Reads and sets the stored theme                                     |
+
+- Product data is only read in Server Components. `Header` passes it to the drawer as a prop, so swapping the JSON for an API only changes server code.
+- The wishlist loads from `localStorage` after hydration (`skipHydration`), so the first client render matches the server HTML.
+- next-themes sets `data-theme` with a script before the first paint. Both logos are in the HTML and CSS shows the active one, so switching themes causes no flash or layout shift.
+
+## Accessibility
+
+- Semantic HTML: `header`, `main`, `section`, a heading order of `h1`, `h2`, `h3`, lists for products and wishlist items, `del` for the old price
+- Keyboard: every control is reachable with Tab and has a visible focus ring; the drawer traps focus and closes with Escape (HeroUI / React Aria)
+- ARIA where HTML falls short: labels on icon buttons, `aria-pressed` on the heart, a toast that announces "Toegevoegd aan verlanglijst" to screen readers
+- Prices on sale read as "Nu € 99,00, Was € 149,00"
+- Theme animations respect `prefers-reduced-motion`
+- Text contrast meets WCAG AA, except the Gamma promo orange (see below)
+
+## Documentation
+
+The reasoning behind the main choices is in [`docs/decisions.md`](docs/decisions.md), and the prompts used to build this with Claude Code are in [`docs/prompts.md`](docs/prompts.md).

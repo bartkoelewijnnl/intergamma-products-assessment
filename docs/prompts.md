@@ -8,4 +8,6 @@
 
 > Voeg naast het gamma thema een karwei thema toe in app/themes/karwei.css, op dezelfde manier. Stijl van karwei.nl. Haal ook het lettertype op, wanneer google font importeren. Gratis font local font van next js gebruiken en anders een alternatief opzoeken. Verander ook punten zoals border radius. Maak een theme switch met `next-themes`. Gebruik hero ui switch in de header, met "Gamma" links en "Karwei" rechts. De keuze blijft bewaard, en er is geen layout shift.
 
-### 3.
+### 3. Logo toevoegen
+
+> Kun je via de websites van gamma en karwei de logo’s in svg ophalen? Zo ja, toon het logo bij het juiste thema. De link moet een zichtbare focus stijl hebben en met het toetsenbord bereikbaar zijn. Geef het logo ook een goede beschrijving

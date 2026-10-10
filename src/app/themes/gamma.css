@@ -5,10 +5,12 @@
     --gamma-focus: #0066db;
     --gamma-text: #111518;
     --gamma-promo: #ff5500;
+    --gamma-conversion: #00852c;
+    --gamma-background: #edf0f2;
 
     --brand-font: var(--font-overpass);
 
-    --background: #edf0f2;
+    --background: var(--gamma-background);
     --foreground: var(--gamma-text);
 
     --accent: var(--gamma-primary);
@@ -20,59 +22,9 @@
 
     --warning: var(--gamma-promo);
     --warning-foreground: var(--white);
-  }
-}
 
-@layer components {
-  [data-theme="gamma"] {
-    .button {
-      @apply h-12 rounded-md px-4 text-base/4 font-bold;
-
-      &:focus-visible,
-      &[data-focus-visible="true"] {
-        @apply shadow-none;
-      }
-
-      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-        @apply size-6;
-      }
-    }
-
-    .button--icon-only {
-      @apply w-12;
-    }
-
-    .button--sm {
-      @apply h-10;
-
-      &.button--icon-only {
-        @apply w-10;
-      }
-
-      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
-        @apply size-5;
-      }
-    }
-
-    .badge {
-      --badge-border: transparent;
-      @apply font-bold;
-    }
-
-    .badge--sm {
-      @apply min-h-5 min-w-5 rounded-full text-xs leading-none;
-    }
-
-    .chip {
-      @apply rounded-md font-bold;
-    }
-
-    /* White button for brand-blue sections, like the favorites button in the design */
-    .button--secondary {
-      --button-bg: var(--white);
-      --button-bg-hover: var(--background);
-      --button-bg-pressed: var(--background);
-      --button-fg: var(--accent);
-    }
+    /* White text on gamma.nl conversion green is 4.8:1 */
+    --conversion: var(--gamma-conversion);
+    --conversion-foreground: var(--white);
   }
 }

@@ -54,14 +54,14 @@ const RootLayout = ({ children }: LayoutProps<"/">) => {
       className={`${overpass.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-background font-brand text-foreground transition-colors duration-300 motion-reduce:transition-none">
+      <body className="bg-background font-brand text-foreground transition-theme">
         <ThemeProvider
           attribute="data-theme"
           themes={["gamma", "karwei"]}
           defaultTheme="gamma"
           enableSystem={false}
         >
-          <div className="bg-accent transition-colors duration-300 motion-reduce:transition-none">
+          <div className="bg-accent transition-theme">
             <Container>
               <Header />
             </Container>

@@ -19,22 +19,32 @@ const categoryStyles: Record<Category, { icon: LucideIcon; tile: string }> = {
 export type CardImageProps = {
   category: Category;
   className?: string;
+  classNameIcon?: string;
   children?: ReactNode;
 };
 
 // Placeholder until there are product photos: a tinted tile with a category icon
-const CardImage = ({ category, className, children }: CardImageProps) => {
+const CardImage = ({
+  category,
+  className,
+  classNameIcon,
+  children,
+}: CardImageProps) => {
   const { icon: Icon, tile } = categoryStyles[category];
 
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center rounded-xl transition-radius",
+        "relative flex items-center justify-center rounded-xl transition-theme",
         tile,
         className,
       )}
     >
-      <Icon aria-hidden className="size-10" strokeWidth={1.5} />
+      <Icon
+        aria-hidden
+        className={cn("size-10", classNameIcon)}
+        strokeWidth={1.5}
+      />
       {children}
     </div>
   );

@@ -2,7 +2,7 @@
 
 # Intergamma products assessment
 
-Product listing page with a wishlist side panel, styled like gamma.nl.
+Product listing page with a wishlist side panel, with a Gamma and a Karwei theme.
 
 ## Stack
 
@@ -19,7 +19,7 @@ Next.js 16 (App Router), TypeScript, Tailwind CSS v4, HeroUI v3, yarn.
 
 - Components are arrow functions (`const X = () => {}`), enforced by ESLint.
 - Use HeroUI components before building your own.
-- Theme styling goes in `src/app/themes/gamma.css`, not in the components.
+- Theme styling goes in `src/app/themes/`, not in the components: `shared.css` for HeroUI styling used by every theme, `gamma.css` and `karwei.css` for each brand's tokens and differences.
 - Accessibility: semantic HTML, keyboard support and WCAG AA contrast.
 
 ## Documentation

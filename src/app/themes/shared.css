@@ -1,0 +1,62 @@
+/* HeroUI component styling shared by all themes. Themes set the tokens it uses (--accent, --conversion, --radius ...) */
+@layer components {
+  [data-theme] {
+    .button {
+      @apply h-12 rounded-md px-4 text-base/4 font-bold;
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-6;
+      }
+    }
+
+    .button--icon-only {
+      @apply w-12;
+    }
+
+    .button--sm {
+      @apply h-10;
+
+      &.button--icon-only {
+        @apply w-10;
+      }
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-5;
+      }
+    }
+
+    /* White button for brand-colored sections, like the favorites button in the header */
+    .button--secondary {
+      --button-bg: var(--white);
+      --button-bg-hover: var(--background);
+      --button-bg-pressed: var(--background);
+      --button-fg: var(--accent);
+    }
+
+    .button--outline {
+      @apply border-accent;
+      --button-fg: var(--accent);
+    }
+
+    /* Call to action (add to cart), not a HeroUI variant so set via className */
+    .button--conversion {
+      --button-bg: var(--conversion);
+      --button-bg-hover: color-mix(in srgb, var(--conversion) 85%, black);
+      --button-bg-pressed: var(--button-bg-hover);
+      --button-fg: var(--conversion-foreground);
+    }
+
+    .badge {
+      --badge-border: transparent;
+      @apply font-bold;
+    }
+
+    .badge--sm {
+      @apply min-h-5 min-w-5 rounded-full text-xs leading-none;
+    }
+
+    .chip {
+      @apply rounded-md font-bold;
+    }
+  }
+}
