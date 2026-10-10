@@ -19,3 +19,9 @@ Short records of the choices that shape this project: context, decision and the 
 - **Context:** The favorites button shows a badge with the number of items on the wishlist. With 3 drills and 1 tin of paint, that could be 2 (products) or 4 (pieces).
 - **Decision:** The badge counts products, so it shows 2. A wishlist is a list of things you want to remember: adding a product changes the badge, raising a quantity does not. The quantity matters for the total, which the drawer shows. The button label and the drawer header use the same count ("2 producten").
 - **Alternatives:** Summing quantities, like a shopping cart (the badge would then change when editing a quantity, which reads as adding a new product).
+
+### Only the default font is preloaded
+
+- **Context:** Lighthouse on mobile measured an LCP of 3.6 s. The LCP element is the hero heading, and almost all of that time was render delay: three preloaded font files (127 KB) competed with the CSS for bandwidth. The Overpass italic file was never used, and Inter is only used by the Karwei theme.
+- **Decision:** Load Overpass as a single normal-style file and set `preload: false` on Inter. Only the font for the default Gamma theme is preloaded. When someone switches to Karwei, Inter loads then, and the fallback font with matching metrics from `next/font` prevents a layout shift. Mobile LCP went from 3.6 s to 3.0 s (simulated), the performance score from 90 to 95.
+- **Alternatives:** Keeping all fonts preloaded (88 KB extra on the critical path for nothing in the Gamma theme); preloading Inter only for the Karwei theme (the theme is only known in the browser after next-themes runs, too late for a preload in the HTML).

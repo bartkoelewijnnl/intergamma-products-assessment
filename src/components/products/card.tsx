@@ -11,7 +11,7 @@ export type ProductCardProps = {
 
 // Card width per grid breakpoint in products.tsx, fixed from xl because the container stops growing
 const imageSizes =
-  "(min-width: 1280px) 260px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw";
+  "(min-width: 1280px) 260px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 360px) 50vw, 100vw";
 
 const ProductCard = ({
   product,

@@ -22,5 +22,8 @@
 
     --warning: var(--gamma-promo);
     --warning-foreground: var(--white);
+
+    /* Saved hearts are filled in the brand blue */
+    --heart: var(--accent);
   }
 }

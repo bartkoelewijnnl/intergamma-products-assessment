@@ -8,9 +8,15 @@
 @custom-variant gamma (&:where([data-theme="gamma"] *));
 @custom-variant karwei (&:where([data-theme="karwei"] *));
 
-/* Each theme sets --brand-font to its own font */
+/* Each theme sets --brand-font and --heart (fill of a saved heart) to its own value */
 @theme inline reference {
   --font-brand: var(--brand-font);
+  --color-heart: var(--heart);
+}
+
+/* Extra small breakpoint: below 360px two product cards side by side get too narrow */
+@theme {
+  --breakpoint-xs: 22.5rem;
 }
 
 /* Page grid: 12 columns from lg, place children with col-span-* and col-start-* */

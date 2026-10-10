@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, toast } from "@heroui/react";
+import { Button, cn, toast } from "@heroui/react";
 import { Heart } from "lucide-react";
 import type { Product } from "@/data/products";
 import { useWishlist } from "@/stores/wishlist";
@@ -38,7 +38,7 @@ const WishlistButton = ({ product, className }: WishlistButtonProps) => {
       className={className}
       onPress={onPress}
     >
-      <Heart aria-hidden fill={isSaved ? "currentColor" : "none"} />
+      <Heart aria-hidden className={cn(isSaved && "fill-heart")} />
     </Button>
   );
 };

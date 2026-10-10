@@ -2,6 +2,13 @@ import productsJson from "./products.json";
 
 export type Category = "tools" | "paint" | "flooring" | "garden";
 
+export const categoryLabels: Record<Category, string> = {
+  tools: "Gereedschap",
+  paint: "Verf",
+  flooring: "Vloeren",
+  garden: "Tuin",
+};
+
 export type Stock = "in-stock" | "limited" | "online";
 
 export type Product = {

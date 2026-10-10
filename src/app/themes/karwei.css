@@ -4,6 +4,7 @@
     --karwei-focus: #0066db;
     --karwei-text: #1e1d1d;
     --karwei-promo: #c20344;
+    --karwei-yellow: #ffaa33;
     --karwei-background: #f6f3f0;
 
     /* Akkurat on karwei.nl is a paid font, Inter is the closest free match */
@@ -25,6 +26,10 @@
     /* White text on the magenta promo color is 6.2:1, passes WCAG AA */
     --warning: var(--karwei-promo);
     --warning-foreground: var(--white);
+
+    /* Saved hearts are filled yellow. Yellow on white is only 1.9:1,
+       the black outline of the icon keeps it above the 3:1 needed for icons. */
+    --heart: var(--karwei-yellow);
   }
 }
 
