@@ -1,15 +1,27 @@
-import { Button } from "@heroui/react";
-import { Heart } from "lucide-react";
+import Container from "@/components/layout/container";
+import Hero from "@/components/layout/hero";
+import Products from "@/components/products/products";
+import { products } from "@/data/products";
 
-const Products = ({}: PageProps<"/">) => {
+const HomePage = ({}: PageProps<"/">) => {
   return (
-    <div className="flex gap-4">
-      <Button variant="secondary">Inloggen</Button>
-      <Button isIconOnly variant="secondary" aria-label="Verlanglijst">
-        <Heart />
-      </Button>
-    </div>
+    <>
+      {/* Extra bottom padding so the products panel can overlap the blue */}
+      <div className="bg-accent pb-24 lg:pb-32">
+        <Container>
+          <Hero
+            title="Alles voor je klus, van eerste schroef tot laatste laag verf"
+            description="Gereedschap, materialen en advies onder één dak. Bewaar wat je nodig hebt op je verlanglijst en haal het op in de winkel."
+          />
+        </Container>
+      </div>
+      <Container className="-mt-14 pb-8 lg:-mt-16">
+        <div className="rounded-2xl bg-surface p-4 sm:p-6">
+          <Products title="Populair deze week" products={products} />
+        </div>
+      </Container>
+    </>
   );
 };
 
-export default Products;
+export default HomePage;

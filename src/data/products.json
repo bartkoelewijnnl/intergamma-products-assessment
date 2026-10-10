@@ -1,0 +1,61 @@
+[
+  {
+    "id": "accuboormachine-18v",
+    "name": "Accuboormachine 18V met 2 accu's en koffer",
+    "category": "tools",
+    "price": 99,
+    "originalPrice": 149,
+    "stock": "in-stock"
+  },
+  {
+    "id": "muurverf-mat-wit",
+    "name": "Muurverf mat wit voor binnen, 2,5 liter",
+    "category": "paint",
+    "price": 34.99,
+    "stock": "in-stock"
+  },
+  {
+    "id": "laminaat-eiken-naturel",
+    "name": "Laminaat eiken naturel, per pak",
+    "category": "flooring",
+    "price": 27.49,
+    "stock": "limited"
+  },
+  {
+    "id": "olijfboom-sierpot",
+    "name": "Olijfboom in sierpot, hoogte 120 cm",
+    "category": "garden",
+    "price": 69.99,
+    "stock": "in-stock",
+    "isNew": true
+  },
+  {
+    "id": "decoupeerzaag-650w",
+    "name": "Decoupeerzaag 650W met pendelstand",
+    "category": "tools",
+    "price": 59.99,
+    "stock": "in-stock"
+  },
+  {
+    "id": "verfrollerset-5-delig",
+    "name": "Verfrollerset 5-delig met verfbak",
+    "category": "paint",
+    "price": 12.99,
+    "originalPrice": 16.99,
+    "stock": "in-stock"
+  },
+  {
+    "id": "ondervloer-3mm",
+    "name": "Ondervloer 3 mm voor laminaat, 15 m²",
+    "category": "flooring",
+    "price": 21.99,
+    "stock": "online"
+  },
+  {
+    "id": "tuinslang-25m",
+    "name": "Tuinslang 25 meter met spuitpistool",
+    "category": "garden",
+    "price": 29.99,
+    "stock": "limited"
+  }
+]

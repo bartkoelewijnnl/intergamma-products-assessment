@@ -5,3 +5,8 @@
 @theme inline reference {
   --font-overpass: var(--font-overpass);
 }
+
+/* Page grid: 12 columns from lg, place children with col-span-* and col-start-* */
+@utility page-grid {
+  @apply grid gap-4 lg:grid-cols-12 lg:gap-8;
+}

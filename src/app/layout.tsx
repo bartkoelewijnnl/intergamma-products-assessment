@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Container from "@/components/container";
+import { Toast } from "@heroui/react";
+import Container from "@/components/layout/container";
+import Header from "@/components/layout/header";
 import "./globals.css";
 
 // Overpass sits a bit high by default, these overrides center it.
@@ -40,10 +42,12 @@ const RootLayout = ({ children }: LayoutProps<"/">) => {
     <html lang="nl" data-theme="gamma" className={`${overpass.variable}`}>
       <body className="bg-background font-overpass text-foreground">
         <div className="bg-accent">
-          <main>
-            <Container className="pt-6 pb-4 sm:pb-8">{children}</Container>
-          </main>
+          <Container>
+            <Header />
+          </Container>
         </div>
+        <main>{children}</main>
+        <Toast.Provider />
       </body>
     </html>
   );

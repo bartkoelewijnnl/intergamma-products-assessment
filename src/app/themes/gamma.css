@@ -4,6 +4,7 @@
     --gamma-primary: #003878;
     --gamma-focus: #0066db;
     --gamma-text: #111518;
+    --gamma-promo: #ff5500;
 
     --background: #edf0f2;
     --foreground: var(--gamma-text);
@@ -14,6 +15,9 @@
     /* gamma.nl darkens brand colors 50% towards black on hover */
     --accent-hover: color-mix(in srgb, var(--accent) 50%, black);
     --focus: var(--gamma-focus);
+
+    --warning: var(--gamma-promo);
+    --warning-foreground: var(--white);
   }
 }
 
@@ -34,6 +38,31 @@
 
     .button--icon-only {
       @apply w-12;
+    }
+
+    .button--sm {
+      @apply h-10;
+
+      &.button--icon-only {
+        @apply w-10;
+      }
+
+      & svg:not([data-slot="spinner"] svg, [data-slot="link-icon"] svg) {
+        @apply size-5;
+      }
+    }
+
+    .badge {
+      --badge-border: transparent;
+      @apply font-bold;
+    }
+
+    .badge--sm {
+      @apply min-h-5 min-w-5 rounded-full text-xs leading-none;
+    }
+
+    .chip {
+      @apply rounded-md font-bold;
     }
 
     /* White button for brand-blue sections, like the favorites button in the design */
