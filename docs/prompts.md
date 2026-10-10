@@ -15,3 +15,11 @@
 ### 4. Skip link
 
 > Voeg een "skip to content" link toe met de tekst "Overslaan en naar de inhoud gaan". Het moet het eerste element zijn dat focus krijgt met tab. De link is onzichtbaar tot focus met tab en goed contrast in beide thema's.
+
+### 5. Product afbeeldingen
+
+> Kun je deze twee foto's bij de producten zetten? De olijfboom hoort bij `olijfboom-sierpot`, de tuinslang bij `tuinslang-25m`. Gebruik next/image zowel op de kaart als in het zijpaneel en zorg dat `sizes` klopt met de grid, de browser zelf de juiste resolutie. Producten zonder foto houden gewoon hun icoon. Maak de bestanden ook wat kleiner, ze hoeven niet op volle grootte in de repo.
+
+### 6. Web Vitals
+
+> Kun je de build door lighthouse halen, op mobiel en desktop? Ik wil per meting de scores en de core web vitals zien, plus wat het lcp element is en waar de tijd in gaat zitten. Zet de verbeterpunten op volgorde, nog niks aanpassen, eerst even kijken.

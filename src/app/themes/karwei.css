@@ -4,7 +4,6 @@
     --karwei-focus: #0066db;
     --karwei-text: #1e1d1d;
     --karwei-promo: #c20344;
-    --karwei-conversion: #ffaa33;
     --karwei-background: #f6f3f0;
 
     /* Akkurat on karwei.nl is a paid font, Inter is the closest free match */
@@ -26,10 +25,6 @@
     /* White text on the magenta promo color is 6.2:1, passes WCAG AA */
     --warning: var(--karwei-promo);
     --warning-foreground: var(--white);
-
-    /* karwei.nl conversion orange takes dark text, 8.9:1 */
-    --conversion: var(--karwei-conversion);
-    --conversion-foreground: var(--karwei-text);
   }
 }
 

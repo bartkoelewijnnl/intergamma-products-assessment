@@ -9,19 +9,11 @@ import "./globals.css";
 
 // Overpass sits a bit high by default, these overrides center it.
 // Local font because next/font/google can't do overrides.
+// No italic file: the site has no italic text, and every file in src is preloaded.
 const overpass = localFont({
-  src: [
-    {
-      path: "./fonts/overpass-latin-wght-normal.woff2",
-      weight: "100 900",
-      style: "normal",
-    },
-    {
-      path: "./fonts/overpass-latin-wght-italic.woff2",
-      weight: "100 900",
-      style: "italic",
-    },
-  ],
+  src: "./fonts/overpass-latin-wght-normal.woff2",
+  weight: "100 900",
+  style: "normal",
   display: "swap",
   variable: "--font-overpass",
   declarations: [
@@ -30,9 +22,11 @@ const overpass = localFont({
   ],
 });
 
-// Karwei theme font: free stand-in for the paid Akkurat
+// Karwei theme font: free stand-in for the paid Akkurat.
+// Not preloaded, Gamma is the default theme and doesn't use it.
 const inter = Inter({
   subsets: ["latin"],
+  preload: false,
   display: "swap",
   variable: "--font-inter",
 });

@@ -31,6 +31,8 @@ const DrawerItem = ({ product, quantity }: DrawerItemProps) => {
     <li className="flex gap-4 rounded-xl bg-background p-3 transition-theme">
       <CardImage
         category={product.category}
+        image={product.image}
+        sizes="80px"
         className="size-20 shrink-0"
         classNameIcon="size-7"
       />

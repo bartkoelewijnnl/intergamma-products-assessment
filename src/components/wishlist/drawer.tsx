@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, Button, Drawer, toast } from "@heroui/react";
+import { Badge, Button, Drawer } from "@heroui/react";
 import { Heart } from "lucide-react";
 import { useEffect } from "react";
 import type { Product } from "@/data/products";
@@ -30,30 +30,12 @@ const WishlistDrawer = ({ products }: WishlistDrawerProps) => {
     return product ? [{ ...item, product }] : [];
   });
 
+  // Counts products, not quantities: the badge says how many products are saved
   const count = entries.length;
   const total = entries.reduce(
     (sum, { product, quantity }) => sum + product.price * quantity,
     0,
   );
-
-  // There is no cart or share endpoint yet, so these only confirm the action
-  const onAddToCart = () =>
-    toast.success("Toegevoegd aan winkelwagen", {
-      description: pluralize(count),
-    });
-
-  const onShare = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      await navigator
-        .share({ title: "Mijn verlanglijst", url })
-        .catch(() => {});
-      return;
-    }
-
-    await navigator.clipboard.writeText(url);
-    toast("Link gekopieerd");
-  };
 
   return (
     <Drawer>
@@ -112,26 +94,20 @@ const WishlistDrawer = ({ products }: WishlistDrawerProps) => {
               )}
             </Drawer.Body>
 
-            {count > 0 && (
-              <Drawer.Footer className="flex-col items-stretch gap-4 border-t border-separator pt-6">
+            <Drawer.Footer className="flex-col items-stretch gap-4 border-t border-separator pt-6">
+              {count > 0 && (
                 <p className="flex items-baseline justify-between">
                   <span>Totaal</span>
                   <span className="text-2xl font-bold text-accent">
                     {formatPrice(total)}
                   </span>
                 </p>
-                <Button
-                  fullWidth
-                  className="button--conversion"
-                  onPress={onAddToCart}
-                >
-                  Alles in winkelwagen
-                </Button>
-                <Button fullWidth variant="outline" onPress={onShare}>
-                  Verlanglijst delen
-                </Button>
-              </Drawer.Footer>
-            )}
+              )}
+              {/* slot="close" lets the dialog close itself, like the close trigger */}
+              <Button fullWidth slot="close">
+                Sluiten
+              </Button>
+            </Drawer.Footer>
           </Drawer.Dialog>
         </Drawer.Content>
       </Drawer.Backdrop>

@@ -4,8 +4,8 @@
     --gamma-primary: #003878;
     --gamma-focus: #0066db;
     --gamma-text: #111518;
-    --gamma-promo: #ff5500;
-    --gamma-conversion: #00852c;
+    /* gamma.nl uses #ff5500, darkened so white text passes WCAG AA (4.8:1 instead of 3.2:1) */
+    --gamma-promo: #cc4400;
     --gamma-background: #edf0f2;
 
     --brand-font: var(--font-overpass);
@@ -22,9 +22,5 @@
 
     --warning: var(--gamma-promo);
     --warning-foreground: var(--white);
-
-    /* White text on gamma.nl conversion green is 4.8:1 */
-    --conversion: var(--gamma-conversion);
-    --conversion-foreground: var(--white);
   }
 }

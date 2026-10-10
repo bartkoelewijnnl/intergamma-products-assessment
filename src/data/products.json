@@ -27,7 +27,8 @@
     "category": "garden",
     "price": 69.99,
     "stock": "in-stock",
-    "isNew": true
+    "isNew": true,
+    "image": "/images/products/olijfboom-sierpot.jpg"
   },
   {
     "id": "decoupeerzaag-650w",
@@ -56,6 +57,7 @@
     "name": "Tuinslang 25 meter met spuitpistool",
     "category": "garden",
     "price": 29.99,
-    "stock": "limited"
+    "stock": "limited",
+    "image": "/images/products/tuinslang-25m.jpg"
   }
 ]

@@ -9,15 +9,24 @@ export type ProductCardProps = {
   product: Product;
 };
 
+// Card width per grid breakpoint in products.tsx, fixed from xl because the container stops growing
+const imageSizes =
+  "(min-width: 1280px) 260px, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw";
+
 const ProductCard = ({
   product,
-  product: { name, category, price, originalPrice, stock, isNew },
+  product: { name, category, image, price, originalPrice, stock, isNew },
 }: ProductCardProps) => {
   const isOnSale = originalPrice !== undefined;
 
   return (
     <Card variant="transparent" className="w-full gap-3 p-0">
-      <CardImage category={category} className="aspect-4/3">
+      <CardImage
+        category={category}
+        image={image}
+        sizes={imageSizes}
+        className="aspect-4/3"
+      >
         {(isOnSale || isNew) && (
           <Chip
             color={isOnSale ? "warning" : "accent"}

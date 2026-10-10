@@ -12,6 +12,8 @@ export type Product = {
   originalPrice?: number;
   stock: Stock;
   isNew?: boolean;
+  // Path in public/, products without a photo show a category icon
+  image?: string;
 };
 
 // Fake products until there is an API. The cast narrows the JSON strings to the unions above.

@@ -84,7 +84,7 @@ Everything renders on the server unless it needs browser state or interaction. T
 - ARIA where HTML falls short: labels on icon buttons, `aria-pressed` on the heart, a toast that announces "Toegevoegd aan verlanglijst" to screen readers
 - Prices on sale read as "Nu € 99,00, Was € 149,00"
 - Theme animations respect `prefers-reduced-motion`
-- Text contrast meets WCAG AA, except the Gamma promo orange (see below)
+- Text contrast meets WCAG AA
 
 ## Documentation
 

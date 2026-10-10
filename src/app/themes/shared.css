@@ -1,4 +1,4 @@
-/* HeroUI component styling shared by all themes. Themes set the tokens it uses (--accent, --conversion, --radius ...) */
+/* HeroUI component styling shared by all themes. Themes set the tokens it uses (--accent, --radius ...) */
 @layer components {
   [data-theme] {
     .button {
@@ -36,14 +36,6 @@
     .button--outline {
       @apply border-accent;
       --button-fg: var(--accent);
-    }
-
-    /* Call to action (add to cart), not a HeroUI variant so set via className */
-    .button--conversion {
-      --button-bg: var(--conversion);
-      --button-bg-hover: color-mix(in srgb, var(--conversion) 85%, black);
-      --button-bg-pressed: var(--button-bg-hover);
-      --button-fg: var(--conversion-foreground);
     }
 
     .badge {

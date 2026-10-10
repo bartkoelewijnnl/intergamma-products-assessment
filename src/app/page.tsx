@@ -12,6 +12,7 @@ const HomePage = ({}: PageProps<"/">) => {
           <Hero
             title="Alles voor je klus, van eerste schroef tot laatste laag verf"
             description="Gereedschap, materialen en advies onder één dak. Bewaar wat je nodig hebt op je verlanglijst en haal het op in de winkel."
+            image="/images/hero-werkplaats.jpg"
           />
         </Container>
       </div>
