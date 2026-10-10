@@ -31,13 +31,32 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const description =
+  "Gereedschap, materialen en advies onder één dak. Bewaar wat je nodig hebt op je verlanglijst.";
+
+// The image comes from opengraph-image.jpg in this folder. On Vercel, Next.js uses the
+// production URL as metadataBase, so the image URL in the preview is absolute.
 export const metadata: Metadata = {
   title: {
     default: "Intergamma | Producten",
     template: "%s | Intergamma",
   },
-  description:
-    "Gereedschap, materialen en advies onder één dak. Bewaar wat je nodig hebt op je verlanglijst.",
+  description,
+  openGraph: {
+    title: "Intergamma | Producten",
+    description,
+    siteName: "Intergamma",
+    locale: "nl_NL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  // An assessment with real brand logos, so keep it out of search results
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const RootLayout = ({ children }: LayoutProps<"/">) => {
