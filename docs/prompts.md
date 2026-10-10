@@ -11,3 +11,7 @@
 ### 3. Logo toevoegen
 
 > Kun je via de websites van gamma en karwei de logo’s in svg ophalen? Zo ja, toon het logo bij het juiste thema. De link moet een zichtbare focus stijl hebben en met het toetsenbord bereikbaar zijn. Geef het logo ook een goede beschrijving
+
+### 4. Skip link
+
+> Voeg een "skip to content" link toe met de tekst "Overslaan en naar de inhoud gaan". Het moet het eerste element zijn dat focus krijgt met tab. De link is onzichtbaar tot focus met tab en goed contrast in beide thema's.

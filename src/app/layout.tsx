@@ -61,12 +61,22 @@ const RootLayout = ({ children }: LayoutProps<"/">) => {
           defaultTheme="gamma"
           enableSystem={false}
         >
+          {/* First tab stop, hidden until keyboard focus. White on the brand color passes AA in both themes. */}
+          <a
+            href="#main"
+            className="sr-only rounded-md bg-surface font-bold text-accent focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:px-4 focus-visible:py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-foreground"
+          >
+            Overslaan en naar de inhoud gaan
+          </a>
           <div className="bg-accent transition-theme">
             <Container>
               <Header />
             </Container>
           </div>
-          <main>{children}</main>
+          {/* tabIndex -1 lets the skip link move keyboard focus here, not only scroll */}
+          <main id="main" tabIndex={-1} className="outline-none">
+            {children}
+          </main>
           <Toast.Provider />
         </ThemeProvider>
       </body>
